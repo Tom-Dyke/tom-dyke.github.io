@@ -5,51 +5,64 @@
     <script> 
       document.addEventListener("DOMContentLoaded", function() {
 
-    var buttonNames = ['Best', 'Very good', 'Good', 'Not good or bad', 'Not very good', 'Worst', 'Tally'];
-    var buttons = [];
-    for (var i = 0; i < buttonNames.length; i++) {
-      var button = document.createElement('button');
-      button.innerHTML = buttonNames[i];
-        buttons.push(button);
-        document.body.appendChild(button);
-        for (var j = 0; j < buttons.length; j++) {
-           buttons[j].style.backgroundColor = 'white';
+      var buttonNames = ['Best', 'Very good', 'Good', 'Not good or bad', 'Not very good', 'Worst', 'Tally'];
+      var buttons = [];
+      var best = 0;
+      var veryGood = 0;
+      var good = 0;
+      var notVeryGood = 0;
+      var worst = 0;
+      
+      for (var i = 0; i < buttonNames.length; i++) {
+        var button = document.createElement('button');
+        button.innerHTML = buttonNames[i];
+          buttons.push(button);
+          document.body.appendChild(button);
+          for (var j = 0; j < buttons.length; j++) {
+            buttons[j].style.backgroundColor = 'white';
+          }
         }
+
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = function() {
+          for (var j = 0; j < buttons.length; j++) {
+            buttons[j].style.backgroundColor = 'white';
+          }
+          this.style.backgroundColor = 'yellow';
+        };
       }
 
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].onclick = function() {
-        for (var j = 0; j < buttons.length; j++) {
-           buttons[j].style.backgroundColor = 'white';
-        }
-        this.style.backgroundColor = 'yellow';
-      };
-    }
-
-    for (var i = 0; i < buttons.length; i++) {
-     buttons[i].addEventListener('click', function() {
-       if (this.innerHTML !== 'Tally') {
-          var text = document.createElement('div');
-          text.innerHTML = this.innerHTML;
-          document.body.appendChild(text);
-        }
-     });
-    }
-
-    var tally = {};
-    for (var i = 0; i < buttonNames.length; i++) {
-      tally[buttonNames[i]] = 0;
-    }
-    for (var i = 0; i < buttons.length; i++) {
+      for (var i = 0; i < buttons.length; i++) {
       buttons[i].addEventListener('click', function() {
-        tally[this.innerHTML]++;
+        if (this.innerHTML !== 'Tally') {
+            var text = document.createElement('div');
+            text.innerHTML = this.innerHTML;
+            document.body.appendChild(text);
+          }
       });
-    }
-    tallyButton.addEventListener('click', function() {
-      var text = document.createElement('div');
-      text.innerHTML = JSON.stringify(tally);
-      document.body.appendChild(text);
-    });
+      }
+      
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', function() {
+          if (this.innerHTML === 'Best') {
+            best++;
+          } else if (this.innerHTML === 'Very good') {
+            veryGood++;
+          } else if (this.innerHTML === 'Good') {
+            good++;
+          } else if (this.innerHTML === 'Not very good') {
+            notVeryGood++;
+          } else if (this.innerHTML === 'Worst') {
+            worst++;
+          }
+        });
+      }
+      
+      buttons[5].addEventListener('click', function() {
+        var tally = document.createElement('div');
+        tally.innerHTML = 'Best: ' + best + '<br>' + 'Very good: ' + veryGood + '<br>' + 'Good: ' + good + '<br>' + 'Not very good: ' + notVeryGood + '<br>' + 'Worst: ' + worst;
+        document.body.appendChild(tally);
+      });
     })
   </script>
   </head>
