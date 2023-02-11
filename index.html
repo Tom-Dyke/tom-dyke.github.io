@@ -14,6 +14,10 @@
        document.body.appendChild(button);
       }
 
+    var tallyButton = document.createElement('button');
+    tallyButton.innerHTML = 'Tally';
+    document.body.appendChild(tallyButton);
+
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].onclick = function() {
         for (var j = 0; j < buttons.length; j++) {
@@ -30,10 +34,6 @@
         document.body.appendChild(text);
       });
     }
-
-    var tallyButton = document.createElement('button');
-    tallyButton.innerHTML = 'Tally';
-    document.body.appendChild(tallyButton);
 
     var tally = {};
     for (var i = 0; i < buttonNames.length; i++) {
