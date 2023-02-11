@@ -19,16 +19,21 @@
 
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].onclick = function() {
+        for (var j = 0; j < buttons.length; j++) {
+           buttons[j].style.backgroundColor = 'white';
+        }
         this.style.backgroundColor = 'yellow';
       };
     }
 
     for (var i = 0; i < buttons.length; i++) {
-      buttons[i].addEventListener('click', function() {
-        var text = document.createElement('div');
-        text.innerHTML = this.innerHTML;
-        document.body.appendChild(text);
-      });
+     buttons[i].addEventListener('click', function() {
+       if (this.innerHTML !== 'Tally') {
+          var text = document.createElement('div');
+          text.innerHTML = this.innerHTML;
+          document.body.appendChild(text);
+        }
+     });
     }
 
     var tally = {};
