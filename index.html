@@ -10,6 +10,7 @@
       var best = 0;
       var veryGood = 0;
       var good = 0;
+      var notgoodorbad = 0;
       var notVeryGood = 0;
       var worst = 0;
       
@@ -29,6 +30,9 @@
             buttons[j].style.backgroundColor = 'white';
           }
           this.style.backgroundColor = 'yellow';
+          setTimeout(function(){
+            this.style.backgroundColor = 'white'
+          }, 500);
         };
       }
 
@@ -50,6 +54,8 @@
             veryGood++;
           } else if (this.innerHTML === 'Good') {
             good++;
+          } else if (this.innerHTML === 'Not good or bad') {
+            notgoodorbad++;
           } else if (this.innerHTML === 'Not very good') {
             notVeryGood++;
           } else if (this.innerHTML === 'Worst') {
@@ -60,7 +66,7 @@
 
       buttons[6].addEventListener('click', function() {
         var tally = document.createElement('div');
-        tally.innerHTML = 'Best: ' + best + '<br>' + 'Very good: ' + veryGood + '<br>' + 'Good: ' + good + '<br>' + 'Not very good: ' + notVeryGood + '<br>' + 'Worst: ' + worst;
+        tally.innerHTML = 'Best: ' + best + '<br>' + 'Very good: ' + veryGood + '<br>' + 'Good: ' + good + '<br>' + 'Not Good or Bad:' + notgoodorbad + '<br>' + 'Not very good: ' + notVeryGood + '<br>' + 'Worst: ' + worst;
         document.body.appendChild(tally);
       });
     })
