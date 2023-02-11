@@ -5,7 +5,7 @@
     <script> 
       document.addEventListener("DOMContentLoaded", function() {
 
-      var buttonNames = ['Best', 'Very good', 'Good', 'Not good or bad', 'Not very good', 'Worst', 'Tally'];
+      var buttonNames = ['Best', 'Very good', 'Good', 'Not good or bad', 'Not very good', 'Worst', 'Tally', 'Clear'];
       var buttons = [];
       var best = 0;
       var veryGood = 0;
@@ -37,15 +37,27 @@
       }
 
       for (var i = 0; i < buttons.length; i++) {
-      buttons[i].addEventListener('click', function() {
-        if (this.innerHTML !== 'Tally') {
-            var text = document.createElement('div');
-            text.innerHTML = this.innerHTML;
-            document.body.appendChild(text);
-          }
-      });
+        buttons[i].addEventListener('click', function() {
+          if (this.innerHTML !== 'Tally') {
+              var text = document.createElement('div');
+              text.innerHTML = this.innerHTML;
+              document.body.appendChild(text);
+            }
+        });
       }
       
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[7].addEventListener('click', function() {
+          if(this.innerHTML === 'Clear')
+            best = 0;
+            veryGood = 0;
+            good = 0;
+            notgoodorbad = 0;
+            notVeryGood = 0;
+            worst = 0;
+        });
+      }
+
       for (var i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener('click', function() {
           if (this.innerHTML === 'Best') {
