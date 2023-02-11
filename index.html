@@ -12,18 +12,44 @@
       button.innerHTML = buttonNames[i];
         buttons.push(button);
        document.body.appendChild(button);
-     }
-
-      for (var i = 0; i < buttons.length; i++) {
-        buttons[i].onclick = function() {
-          for (var j = 0; j < buttons.length; j++) {
-            buttons[j].style.backgroundColor = 'white';
-          }
-          this.style.backgroundColor = 'yellow';
-        };
       }
+
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].onclick = function() {
+        for (var j = 0; j < buttons.length; j++) {
+           buttons[j].style.backgroundColor = 'white';
+        }
+        this.style.backgroundColor = 'yellow';
+      };
     }
-  )
+
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', function() {
+        var text = document.createElement('div');
+        text.innerHTML = this.innerHTML;
+        document.body.appendChild(text);
+      });
+    }
+
+    var tallyButton = document.createElement('button');
+    tallyButton.innerHTML = 'Tally';
+    document.body.appendChild(tallyButton);
+
+    var tally = {};
+    for (var i = 0; i < buttonNames.length; i++) {
+      tally[buttonNames[i]] = 0;
+    }
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', function() {
+        tally[this.innerHTML]++;
+      });
+    }
+    tallyButton.addEventListener('click', function() {
+      var text = document.createElement('div');
+      text.innerHTML = JSON.stringify(tally);
+      document.body.appendChild(text);
+    });
+    })
   </script>
   </head>
   <body>
